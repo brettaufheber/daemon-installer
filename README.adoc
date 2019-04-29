@@ -1,0 +1,76 @@
+= Daemon Installer
+
+A Bash script that can be used to install and uninstall daemons.
+
+Download new versions from the Git repository https://github.com/brettaufheber/daemon-installer.
+
+=== Usage
+
+==== Install
+
+[source]
+----
+sudo daemon-installer.sh install \
+  -u <username> \
+  -n <daemon to be installed> \
+  -c <command to be executed> \
+  -d <working directory> \
+  -l <destination for stdout and stderr> \
+  -p <PID file to be created by daemon>
+----
+
+==== Uninstall
+
+[source]
+----
+sudo daemon-installer.sh uninstall \
+  -n <daemon to be uninstalled>
+----
+
+==== Example for sbt project
+
+[source]
+----
+sudo daemon-installer.sh install \
+  -n my_daemon \
+  -c "sbt run -no-colors -J-Xms1G -J-Xmx3G -J-Xss1G" \
+  -d path/to/project
+----
+
+==== Start daemon
+
+[source]
+----
+sudo service my_daemon start
+----
+
+==== Stop daemon
+
+[source]
+----
+sudo service my_daemon stop
+----
+
+==== Get status information
+
+[source]
+----
+sudo systemctl status my_daemon.service
+----
+
+=== License
+
+Copyright (c) 2019 Eric Löffler
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see _http://www.gnu.org/licenses/_.
